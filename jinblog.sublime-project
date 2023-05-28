@@ -10,6 +10,10 @@
       {
           "name": "Run web server",
           "shell_cmd": "python3 -m http.server"
-      }
+      },
+      {
+          "name": "Build",
+          "shell_cmd": "python3 build.py"
+      }      
   ]
 }
