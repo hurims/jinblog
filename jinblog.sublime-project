@@ -1,8 +1,15 @@
 {
-	"folders":
-	[
-		{
-			"path": "."
-		}
-	]
+  "folders":
+  [
+    {
+      "path": "."
+    }
+  ],
+  "build_systems":
+  [
+      {
+          "name": "Run web server",
+          "shell_cmd": "python3 -m http.server"
+      }
+  ]
 }
