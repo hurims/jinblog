@@ -64,6 +64,33 @@ const showButton = (show) => {
   reset_button.hidden = !show;
 }
 
+const sendResult = (data) => {
+  const XHR = new XMLHttpRequest();
+  const FD = new FormData();
+
+  // Push our data into our FormData object
+  for (const [name, value] of Object.entries(data)) {
+    FD.append(name, value);
+  }
+
+  // Define what happens on successful data submission
+  XHR.addEventListener("load", (event) => {
+    console.log("Yeah! Data sent and response loaded.");
+    console.log(event);
+  });
+
+  // Define what happens in case of an error
+  XHR.addEventListener("error", (event) => {
+    console.log("Oops! Something went wrong.");
+  });
+
+  // Set up our request
+  XHR.open("POST", "http://jyhur.com/game/record.php");
+
+  // Send our FormData object; HTTP headers are set automatically
+  XHR.send(FD);
+}
+
 const finishGame = () => {
   stopScroll();
 
@@ -82,6 +109,7 @@ const finishGame = () => {
   
   showOutput(true);
   showButton(true);
+  sendResult({"score": result});
 }
 
 const pickNumber = () => {
