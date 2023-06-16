@@ -10,7 +10,12 @@
       {
           "name": "Build",
           "working_dir": "${project_path}",
-          "shell_cmd": "python3 build.py && cd www && open http://localhost:8000/index.html && python3 -m http.server"
-      }      
+          "shell_cmd": "python3 build.py && scp -r www/ hurims@jyhur.com:/hurims"
+      },
+      {
+          "name": "Run",
+          "working_dir": "${project_path}",
+          "shell_cmd": "cd www && open http://localhost:8000/index.html && python3 -m http.server"
+      }            
   ]
 }
