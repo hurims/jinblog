@@ -19,7 +19,13 @@
                     <a class="title" href="/game/hall_of_fame.php">HALL OF FAME</a>
                 </div>
             </div>
-        </center>        
+        </center>
+        <div id="edit_row">
+            <label for="name">Name (1 to 8 characters):</label>
+            <span>    </span>
+            <input type="text" id="name" name="name" required
+                    minlength="1" maxlength="8" size="10">
+        </div>            
         <div id="num_row">
             <div class="number_wrapper" id="col0">
                 <div class="number" id="n0" hidden>0</div>
@@ -74,7 +80,7 @@
             <h1 id="output"></h1>
         </div>
         <div id="button_wrapper">
-            <button id="retry">Retry?</h1>
+            <button id="retry">Retry</h1>
         </div>
     </body>
 </html>

@@ -16,14 +16,16 @@ $result = mysqli_query( $mysqli, $sql );
 <table width='80%' border=0>
     <tr bgcolor='#DDDDDD'>
         <td><strong>SCORE</strong></td>
-        <td><strong>BROWSER</strong></td>
+        <td><strong>NAME</strong></td>
+        <td><strong>EXPR</strong></td>
         <td><strong>TIME</strong></td>
     </tr>
     <?php
     while ($res = mysqli_fetch_assoc($result)) {
         echo "<tr>";
         echo "<td>".$res['score']."</td>";
-        echo "<td>".$res['browser']."</td>";
+        echo "<td>".$res['name']."</td>";
+        echo "<td>".$res['expression']."</td>";
         echo "<td>".$res['timestamp']."</td>";
         echo "</tr>";
     }
@@ -38,14 +40,16 @@ $result = mysqli_query( $mysqli, $sql );
 <table width='80%' border=0>
     <tr bgcolor='#DDDDDD'>
         <td><strong>SCORE</strong></td>
-        <td><strong>BROWSER</strong></td>
+        <td><strong>NAME</strong></td>
+        <td><strong>EXPR</strong></td>
         <td><strong>TIME</strong></td>
     </tr>
     <?php
     while ($res = mysqli_fetch_assoc($result)) {
         echo "<tr>";
         echo "<td>".$res['score']."</td>";
-        echo "<td>".$res['browser']."</td>";
+        echo "<td>".$res['name']."</td>";
+        echo "<td>".$res['expression']."</td>";        
         echo "<td>".$res['timestamp']."</td>";
         echo "</tr>";
     }

@@ -10,6 +10,9 @@ CREATE TABLE records (
 );
 
 
+ALTER TABLE records
+Add expression VARCHAR(20);
+
 
 select * from records where DATE(`timestamp`) = CURDATE() order by `score` desc limit 1;
 
