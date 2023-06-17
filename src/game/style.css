@@ -1,17 +1,50 @@
+#header_row > div {
+  display: flex;
+  justify-content: center;
+}
+
+#header_row {
+  flex: 2 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#edit_row > input {
+  text-align: center;
+  vertical-align: middle;    
+}
+
 #edit_row {
-  width: 100%;
-  height: 10%;
+  flex: 1 100px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 #num_row {
-  width: 100%;
-  height: 20%;
+  flex: 1 100px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+}
+
+#num_row > .num {
+  flex: 100px;
+  border: 1px solid black;
+  font-size: 7vh;
+  text-align: center;
+  vertical-align: middle;
+  margin: 20px;
+}
+
+#num_row > .op {
+  flex: 100px;
+  font-size: 7vh;
+  text-align: center;
+  vertical-align: middle;  
+  margin: 20px;
 }
 
 #output_wrapper {
@@ -38,30 +71,9 @@
   font-size: 4vh;  
 }
 
-.number {
-  font-size: 7vh;
-/*  border: 1px solid red;*/
-  top: 50%;
-  left: 50%;
-  will-change: transform;
-}
-
-.number_wrapper {
-  border: 1px solid black;
-  width: 10%;
-  height: 40%; 
+#doc_wrapper {
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.op_wrapper {
-/*  border: 1px solid black;*/
-  width: 10%;
-  height: 40%; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 }
 
 a {
@@ -69,22 +81,8 @@ a {
   font-weight: bold;
 }
 
-label {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  text-align: right;
-  width: 400px;
-  line-height: 26px;
-}
-
-input {
-  height: 20px;
-  flex: 0 0 200px;
-  margin-left: 10px;
-}
-
-html, body { 
+html, body {
   font-family: Verdana;
-  width: 100%; height: 100%;
+  /* width: 100%; */
+  /* height: 100%; */
 }

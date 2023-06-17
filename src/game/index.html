@@ -4,83 +4,39 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css" />
-        <title>+ - * /</title>
+        <title>+ - × ÷</title>
         <script src="script.js" type="text/javascript" defer></script>
     </head>
     <body>
-        <center>
-            <div style="display: inline-block; vertical-align:middle;">
-                <a href="/" class="title">
-                    <b>+ - × ÷</b>
-                    <br>
-                </a>
-                <hr>
-                <div style="text-align: justify;display: inline-block; width: 100%;">
+        <div id="doc_wrapper">
+            <div id="header_row">
+                <div>
+                    <a href="/" class="title">
+                        <b>+ - × ÷</b>
+                    </a>
+                </div>
+                <div>
                     <a class="title" href="/game/hall_of_fame.php">HALL OF FAME</a>
                 </div>
             </div>
-        </center>
-        <div id="edit_row">
-            <label for="name">Name (1 to 8 characters):</label>
-            <span>    </span>
-            <input type="text" id="name" name="name" required
-                    minlength="1" maxlength="8" size="10">
-        </div>            
-        <div id="num_row">
-            <div class="number_wrapper" id="col0">
-                <div class="number" id="n0" hidden>0</div>
-                <div class="number" id="n1" hidden>1</div>
-                <div class="number" id="n2" hidden>2</div>
-                <div class="number" id="n3" hidden>3</div>
-                <div class="number" id="n4" hidden>4</div>
-                <div class="number" id="n5" hidden>5</div>
-                <div class="number" id="n6" hidden>6</div>
-                <div class="number" id="n7" hidden>7</div>
-                <div class="number" id="n8" hidden>8</div>
-                <div class="number" id="n9" hidden>9</div>
+            <div id="edit_row">
+                <label for="name">Name (1 to 8 characters):</label>
+                <input type="text" id="name" name="name" required
+                        minlength="1" maxlength="8" size="10">
+            </div>            
+            <div id="num_row">
+                <div class="num" id="col0">9</div>
+                <div class="op" id="col1">+</div>
+                <div class="num" id="col2">9</div>
+                <div class="op" id="col3">-</div>
+                <div class="num" id="col4">1</div>
             </div>
-            <div class="op_wrapper" id="col1">
-                <div class="number" id="n0" hidden>+</div>
-                <div class="number" id="n1" hidden>-</div>
-                <div class="number" id="n2" hidden>×</div>
-                <div class="number" id="n3" hidden>÷</div>
+            <div id="output_wrapper">
+                <h1 id="output"></h1>
             </div>
-            <div class="number_wrapper" id="col2">
-                <div class="number" id="n0" hidden>0</div>
-                <div class="number" id="n1" hidden>1</div>
-                <div class="number" id="n2" hidden>2</div>
-                <div class="number" id="n3" hidden>3</div>
-                <div class="number" id="n4" hidden>4</div>
-                <div class="number" id="n5" hidden>5</div>
-                <div class="number" id="n6" hidden>6</div>
-                <div class="number" id="n7" hidden>7</div>
-                <div class="number" id="n8" hidden>8</div>
-                <div class="number" id="n9" hidden>9</div>
+            <div id="button_wrapper">
+                <button id="retry">Retry</button>
             </div>
-            <div class="op_wrapper" id="col3">
-                <div class="number" id="n0" hidden>+</div>
-                <div class="number" id="n1" hidden>-</div>
-                <div class="number" id="n2" hidden>×</div>
-                <div class="number" id="n3" hidden>÷</div>
-            </div>
-            <div class="number_wrapper" id="col4">
-                <div class="number" id="n0" hidden>0</div>
-                <div class="number" id="n1" hidden>1</div>
-                <div class="number" id="n2" hidden>2</div>
-                <div class="number" id="n3" hidden>3</div>
-                <div class="number" id="n4" hidden>4</div>
-                <div class="number" id="n5" hidden>5</div>
-                <div class="number" id="n6" hidden>6</div>
-                <div class="number" id="n7" hidden>7</div>
-                <div class="number" id="n8" hidden>8</div>
-                <div class="number" id="n9" hidden>9</div>
-            </div>
-        </div>
-        <div id="output_wrapper">
-            <h1 id="output"></h1>
-        </div>
-        <div id="button_wrapper">
-            <button id="retry">Retry</h1>
         </div>
     </body>
 </html>

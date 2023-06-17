@@ -1,26 +1,45 @@
+const name_key = 'my_name';
 const numOfColumns = 5;
 const numOfElems = [10,4,10,4,10];
 const scrollSpeedMs = 10;
-const operators = ['+', '-', '*', '/']
+const operators = ['+', '-', '×', '÷']
+const calculatable_operators = ['+', '-', '*', '/']
 
 num_elems = [];
 
+elem = document.querySelector('#col0');
 for (var i = 0; i < numOfColumns; i++) {
-  num_elems.push(new Array);
-
-  for (var j = 0; j < numOfElems[i]; j++) {
-    elem = document.querySelector('#col' + i + " #n" + j);
-    num_elems[i].push(elem);
-  }
+  elem = document.querySelector('#col' + i);
+  num_elems.push(elem);
 }
 
 output = document.getElementById('output');
 reset_button = document.getElementById('retry');
 
-const showNumber = (column_index_to_change, num_index_to_show) => {
-  for (var i = 0; i < numOfElems[column_index_to_change]; i++) {
-    num_elems[column_index_to_change][i].hidden = i != num_index_to_show;
+const showNumber = (column_index, value) => {
+  num_elems[column_index].innerHTML = value;
+}
+
+const getValueFromIndex = (column_index, num_index) => {
+  elem = num_elems[column_index];
+  var value;
+  if (elem.className == 'num') {
+    value = num_index;
+  } else if (elem.className == 'op') {
+    value = operators[num_index];
   }
+  return value;
+}
+
+const getIndexFromValue = (column_index, num_value) => {
+  elem = num_elems[column_index];
+  var index;
+  if (elem.className == 'num') {
+    index = parseInt(num_value);
+  } else if (elem.className == 'op') {
+    index = operators.indexOf(num_value)
+  }
+  return index;
 }
 
 const startScroll = () => {
@@ -36,24 +55,19 @@ const scrollNumber = () => {
     return;
   }
   cur_num_index = (cur_num_index + 1) % numOfElems[cur_column_index];
-  showNumber(cur_column_index, cur_num_index);
+  showNumber(cur_column_index, getValueFromIndex(cur_column_index, cur_num_index));
   startScroll();
 };
 
 const hideAllNumbers = () => {
   for (var i = 0; i < numOfColumns; i++) {
-    for (var j = 0; j < numOfElems[i]; j++) {
-       num_elems[i][j].hidden = true;
-    }
+    showNumber(i, "")
   }  
 }
 
 const getPickedIndex = (column_index) => {
-  for (var j = 0; j < numOfElems[column_index]; j++) {
-     if (!num_elems[column_index][j].hidden) {
-      return j;
-     }
-  }
+  num_value = num_elems[column_index].innerHTML;
+  return getIndexFromValue(column_index, num_value);
 }
 
 const showOutput = (show) => {
@@ -64,7 +78,7 @@ const showButton = (show) => {
   reset_button.hidden = !show;
 }
 
-const sendResult = (data) => {
+const sendResult = (data, callback) => {
   const xhr = new XMLHttpRequest();
   const form = new FormData();
 
@@ -75,20 +89,27 @@ const sendResult = (data) => {
 
   // Define what happens on successful data submission
   xhr.addEventListener("load", (event) => {
-    console.log("Yeah! Data sent and response loaded.");
-    console.log(event);
   });
 
   // Define what happens in case of an error
   xhr.addEventListener("error", (event) => {
-    console.log("Oops! Something went wrong.");
   });
+
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4) {
+      callback(xhr.response);
+    }
+  };  
 
   // Set up our request
   xhr.open("POST", "http://jyhur.com/game/record.php");
 
   // Send our FormData object; HTTP headers are set automatically
-  xhr.send(form);
+  xhr.send(form);  
+}
+
+const showRanking = (post_response) => {
+  console.log(post_response);
 }
 
 const finishGame = () => {
@@ -99,7 +120,7 @@ const finishGame = () => {
   num2 = getPickedIndex(2);
   op2 = operators[getPickedIndex(3)];
   num3 = getPickedIndex(4);
-  expression = "" + num1 + op1 + num2 + op2 + num3;
+  expression = "" + num1 + calculatable_operators[operators.indexOf(op1)] + num2 + calculatable_operators[operators.indexOf(op2)] + num3;
   console.log(expression)
   result = eval(expression);
   if (result == Infinity) {
@@ -111,7 +132,11 @@ const finishGame = () => {
   showButton(true);
 
   name = document.getElementById('name').value
-  sendResult({"score": result, "name": name, "expression": expression});
+  sendResult({"score": result, "name": name, "expression": expression}, showRanking);
+
+  if (name) {
+    localStorage.setItem(name_key, name);
+  }
 }
 
 const pickNumber = () => {
@@ -121,11 +146,19 @@ const pickNumber = () => {
   }
 }
 
+const restoreName = () => {
+  var name = document.getElementById('name').value
+  if (!name) {
+    document.getElementById('name').value = localStorage.getItem(name_key);
+  }
+}
+
 const init = () => {
   spinning = true;
   cur_column_index = 0;
   cur_num_index = 0;
 
+  restoreName();
   showOutput(false);
   hideAllNumbers(cur_column_index);
   showButton(false);

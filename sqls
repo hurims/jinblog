@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS records;
 CREATE TABLE records (
   id INT(11) NOT NULL AUTO_INCREMENT,
   score FLOAT(24) NOT NULL,
-  player VARCHAR(20),
+  name VARCHAR(20),
   browser VARCHAR(500) NOT NULL,
   timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY  (id)
@@ -13,7 +13,24 @@ CREATE TABLE records (
 ALTER TABLE records
 Add expression VARCHAR(20);
 
+ALTER TABLE records CHANGE COLUMN `player` name VARCHAR(20);
+
+desc records;
+
+
+INSERT INTO records (score, expression, name, browser) VALUES (448, "7×8×8", "joshua", "unknown browser");
+INSERT INTO records (score, expression, name, browser) VALUES (384, "8×8×6", "Mangom", "unknown browser");
+INSERT INTO records (score, expression, name, browser) VALUES (432, "6×9×8", "Jinyoung", "unknown browser");
+INSERT INTO records (score, expression, name, browser) VALUES (360, "8×5×9", "Jinyoung", "unknown browser");
+
+UPDATE records SET name = "Joshua", expression = "7*8*8" WHERE id = 502;
 
 select * from records where DATE(`timestamp`) = CURDATE() order by `score` desc limit 1;
 
 select * from records order by `score` desc limit 1;
+
+
+select * from records order by `timestamp` desc limit 10;
+
+
+SELECT COUNT(score) FROM scores WHERE score > 13.5;

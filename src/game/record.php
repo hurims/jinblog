@@ -7,7 +7,7 @@
         echo '<h1>Fail!</h1>';
     } else {
         require_once("../db_connection.php");
-        $sql = "INSERT INTO records ( score, player, expression, browser ) VALUES ( '$score', '$name', '$expression', '$browser' );";
+        $sql = "INSERT INTO records ( score, name, expression, browser ) VALUES ( '$score', '$name', '$expression', '$browser' );";
         mysqli_query( $mysqli, $sql );
         echo '<h1>Success!</h1>';
     }
