@@ -30,6 +30,10 @@
   justify-content: space-around;
 }
 
+#num_row > .dummy {
+  flex: 100px;
+}
+
 #num_row > .num {
   flex: 100px;
   border: 1px solid black;
@@ -51,8 +55,8 @@
   width: 100%;
   height: 10%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 #button_wrapper {

@@ -10,9 +10,9 @@
 <?php
 require_once("../db_connection.php");
 $sql = "SELECT * FROM records ORDER BY `score` DESC LIMIT 10;";
-$result = mysqli_query( $mysqli, $sql );
+$result = $mysqli->query($sql);
 ?>
-<h1>Top 10</h1>
+<h1>TOP 10</h1>
 <table width='80%' border=0>
     <tr bgcolor='#DDDDDD'>
         <td><strong>SCORE</strong></td>
@@ -21,7 +21,7 @@ $result = mysqli_query( $mysqli, $sql );
         <td><strong>TIME</strong></td>
     </tr>
     <?php
-    while ($res = mysqli_fetch_assoc($result)) {
+    while ($res = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>".$res['score']."</td>";
         echo "<td>".$res['name']."</td>";
@@ -31,12 +31,14 @@ $result = mysqli_query( $mysqli, $sql );
     }
     ?>
 </table>
+<br><br><br><br><br><br>
 
 <?php
+require_once("../db_connection.php");
 $sql = "SELECT * FROM records WHERE DATE(`timestamp`) = CURDATE() ORDER BY `score` DESC LIMIT 10;";
-$result = mysqli_query( $mysqli, $sql );
+$result = $mysqli->query($sql);
 ?>
-<h1>Today High Scores</h1>
+<h1>Today Top 10</h1>
 <table width='80%' border=0>
     <tr bgcolor='#DDDDDD'>
         <td><strong>SCORE</strong></td>
@@ -45,7 +47,7 @@ $result = mysqli_query( $mysqli, $sql );
         <td><strong>TIME</strong></td>
     </tr>
     <?php
-    while ($res = mysqli_fetch_assoc($result)) {
+    while ($res = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>".$res['score']."</td>";
         echo "<td>".$res['name']."</td>";

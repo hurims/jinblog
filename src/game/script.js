@@ -13,7 +13,8 @@ for (var i = 0; i < numOfColumns; i++) {
   num_elems.push(elem);
 }
 
-output = document.getElementById('output');
+score_elem = document.getElementById('score');
+rank_desc_elem = document.getElementById('rank_desc');
 reset_button = document.getElementById('retry');
 
 const showNumber = (column_index, value) => {
@@ -71,7 +72,8 @@ const getPickedIndex = (column_index) => {
 }
 
 const showOutput = (show) => {
-  output.hidden = !show;
+  score_elem.hidden = !show;
+  rank_desc_elem.hidden = !show;
 }
 
 const showButton = (show) => {
@@ -109,7 +111,15 @@ const sendResult = (data, callback) => {
 }
 
 const showRanking = (post_response) => {
-  console.log(post_response);
+  // console.log(post_response);
+  json = JSON.parse(post_response);
+  desc = "Your rank is " + json.total_rank + ".";
+
+  percentile = (json.total_rank * 1. / json.total_count) * 100;
+  percentile = Math.round(percentile * 10) / 10;
+  desc += " Top " + percentile + "%."
+
+  rank_desc_elem.innerHTML = desc;
 }
 
 const finishGame = () => {
@@ -126,17 +136,17 @@ const finishGame = () => {
   if (result == Infinity) {
     result = 0;
   }
-  output.innerHTML = result;
+  score_elem.innerHTML = result;
   
-  showOutput(true);
-  showButton(true);
-
   name = document.getElementById('name').value
   sendResult({"score": result, "name": name, "expression": expression}, showRanking);
 
   if (name) {
     localStorage.setItem(name_key, name);
   }
+
+  showOutput(true);
+  showButton(true);  
 }
 
 const pickNumber = () => {
