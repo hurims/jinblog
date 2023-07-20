@@ -4,7 +4,6 @@ on: [push]
 jobs:
   trigget-jenkins-build:
     runs-on: ubuntu-latest
-    - name: "Trigger jenkins job"
       uses: GoldenspearLLC/build-jenkins-job@master
       with:
         jenkins-url: "http://180.229.230.102:8080/"
@@ -12,7 +11,5 @@ jobs:
         user: "jenkins-username"
         job-path: "job/jenkins_test/job/main/"
         job-params: ""
-    - name: Get job status
-      run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
 
 
