@@ -3,7 +3,7 @@ run-name: Trigger jenkins build
 on:
   pull_request:
     branches:
-      - release/v1.1.1.1
+      - main
     types: [closed]
 jobs:
   trigget-jenkins-build:
