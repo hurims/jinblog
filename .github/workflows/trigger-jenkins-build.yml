@@ -4,10 +4,8 @@ on:
   pull_request:
     branches:
       - main
-    # types: [closed]
 jobs:
   trigget-jenkins-build:
-    # if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     - name: "Trigger jenkins job"
       uses: GoldenspearLLC/build-jenkins-job@master
