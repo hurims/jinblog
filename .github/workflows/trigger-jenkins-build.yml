@@ -16,3 +16,5 @@ jobs:
           user: "example"
           token: ${{ secrets.JYHUR_JENKINS_TOKEN }}
           job: "foobar"
+
+          
