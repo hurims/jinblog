@@ -1,16 +1,16 @@
+name: trigger-jenkins-build
+run-name: Trigger jenkins build
 on:
   pull_request:
     branches:
       - release/v1.1.1.1
     types: [closed]
-
 jobs:
   trigget-jenkins-build:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: trigger single Job
-        uses: appleboy/jenkins-action@master
+      - uses: appleboy/jenkins-action@master
         with:
           url: "http://180.229.230.102:8080/"
           user: "example"
