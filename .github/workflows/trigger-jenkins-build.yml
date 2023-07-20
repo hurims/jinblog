@@ -1,9 +1,6 @@
 name: trigger-jenkins-build
 run-name: Trigger jenkins build
-on:
-  pull_request:
-    branches:
-      - main
+on: [push]
 jobs:
   trigget-jenkins-build:
     runs-on: ubuntu-latest
