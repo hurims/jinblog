@@ -10,11 +10,10 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - uses: appleboy/jenkins-action@master
+      - uses: GoldenspearLLC/build-jenkins-job@master
         with:
-          url: "http://180.229.230.102:8080/"
-          user: "example"
-          token: ${{ secrets.JYHUR_JENKINS_TOKEN }}
-          job: "foobar"
-
-          
+          jenkins-url: "http://180.229.230.102:8080/"
+          jenkins-token: ${{ secrets.JYHUR_JENKINS_TOKEN }}
+          user: "jenkins-username"
+          job-path: "job/jenkins_test/job/main/"
+          job-params: ""
