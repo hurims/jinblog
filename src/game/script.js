@@ -104,7 +104,7 @@ const sendResult = (data, callback) => {
   };  
 
   // Set up our request
-  xhr.open("POST", "http://jyhur.com/game/record.php");
+  xhr.open("POST", "https://jyhur.com/game/record.php");
 
   // Send our FormData object; HTTP headers are set automatically
   xhr.send(form);  

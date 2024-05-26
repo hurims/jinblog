@@ -8,14 +8,9 @@
   "build_systems":
   [
       {
-          "name": "Build and upload",
+          "name": "Upload",
           "working_dir": "${project_path}",
-          "shell_cmd": "python3 build.py && scp -rp www hurims@jyhur.com:/hurims"
-      },
-      {
-          "name": "Run local server",
-          "working_dir": "${project_path}",
-          "shell_cmd": "cd www && open http://localhost:8000/index.html && python3 -m http.server"
-      }            
+          "shell_cmd": "scp -rp src/* hurims@jyhur.com:/hurims/www && curl https://jyhur.com/gen.php"
+      }
   ]
 }

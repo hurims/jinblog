@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-COMMON_HEAD_PLACEHOLDER          
-  <title>가족 얼굴 인식</title>
+<?genheader("가족 얼굴 인식", "May 18, 2024");?>
+<p>
+  ChatGPT의 도움으로 구현함.
+</p>
+
   <script src="face-api.js"></script>
   <style>
     canvas {
@@ -11,8 +11,7 @@ COMMON_HEAD_PLACEHOLDER
       left: 0;
     }
   </style>
-</head>
-<body>
+
   <video id="video" width="720" height="560" autoplay muted playsinline></video>
   <script>
     const video = document.getElementById('video');
@@ -82,5 +81,3 @@ COMMON_HEAD_PLACEHOLDER
     startVideo();
     init();
   </script>
-</body>
-</html>

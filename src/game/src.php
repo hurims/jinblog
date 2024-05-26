@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-COMMON_HEAD_PLACEHOLDER        
+<?genheader("사칙연산 게임 제작", "June 13, 2023");?>
+
         <link rel="stylesheet" href="style.css" />
-        <title>+ - × ÷</title>
         <script src="script.js" type="text/javascript" defer></script>
-    </head>
-    <body>
         <div id="doc_wrapper">
             <div id="header_row">
                 <div>
@@ -40,5 +35,4 @@ COMMON_HEAD_PLACEHOLDER
                 <button id="retry">Retry</button>
             </div>
         </div>
-    </body>
-</html>
+
