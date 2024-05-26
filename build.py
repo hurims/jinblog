@@ -13,19 +13,22 @@ def get_all_html(directory):
         matches.append(os.path.join(root, file))    
   return matches
 
+def replace_placeholder_with_file(placeholder, file_path):
+  header = open(file_path, 'r').read()
+  for path in get_all_html(BUILD_OUT):
+      contents = ''
+      with open(path, 'r') as f:
+        contents = f.read()
+        contents = contents.replace(placeholder, header)
+      with open(path, 'w') as f:
+        f.write(contents)  
 
 def main():
   shutil.rmtree(BUILD_OUT)
   copy_tree('src', BUILD_OUT)
 
-  header = open('www/header.html', 'r').read()
-  for path in get_all_html(BUILD_OUT):
-      contents = ''
-      with open(path, 'r') as f:
-        contents = f.read()
-        contents = contents.replace('HEADER_PLACEHOLDER', header)
-      with open(path, 'w') as f:
-        f.write(contents)
+  replace_placeholder_with_file('BODY_HEADER_PLACEHOLDER', 'www/templates/header.html')
+  replace_placeholder_with_file('COMMON_HEAD_PLACEHOLDER', 'www/templates/common_head.html')
 
 
 if __name__ == '__main__':
